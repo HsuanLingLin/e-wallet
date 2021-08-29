@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{ account.name }}</h1>
+
+<ul>
+{% if statement_list %}
+    {% for statement in statement_list %}
+        <li>transaction amount: {{statement.amount}},
+        balance after transaction: {{statement.balance_after_transaction}},
+        type: {% if statement.type == 1 %}
+                deposit,
+              {% else %}
+                transfer,
+              {% endif %}
+        transaction time: {{statement.create_time}}</li>
+    {% endfor %}
+{% else %}
+        <p>No transaction statements are available.</p>
+{% endif %}
+</ul>
+{% endblock %}
